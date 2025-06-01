@@ -18,7 +18,7 @@ from datasets.video_capture import VideoCapture
 
 class MSRVTTDataset(Dataset):
     """
-        videos_dir: directory where all videos are stored 
+        videos_dir: directory where all videos are stored
         config: AllConfig object
         split_type: 'train'/'test'
         img_transforms: Composition of transforms
@@ -42,7 +42,7 @@ class MSRVTTDataset(Dataset):
         elif split_type == 'test':
             self.data = open(os.path.join(self.data_dir, 'test.txt')).readlines()
 
-            
+
     def __getitem__(self, index):
         video_feature_dir = os.path.join(self.video_features_dir, self.data[index].replace('\n', '.pt'))
         music_feature_dir = os.path.join(self.music_features_dir, self.data[index].replace('\n', '.pt'))
@@ -69,7 +69,7 @@ class MSRVTTDataset(Dataset):
         data['music_beat'] = music_beat_avg_feature
 
         return data
-    
+
     def __len__(self):
         return len(self.data)
 
